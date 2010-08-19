@@ -1,24 +1,31 @@
-<h1>Listing products</h1>
+<h1>製品一覧</h1>
 
 <table>
   <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Image url</th>
+    <th>名称</th>
+    <th>説明</th>
+    <th>画像URL</th>
+    <!-- START_HIGHLIGHT -->
+    <th>価格</th>
+    <!-- END_HIGHLIGHT -->
   </tr>
 
-<% @products.each do |product| %>
+<% for product in @products %>
   <tr>
     <td><%=h product.title %></td>
     <td><%=h product.description %></td>
     <td><%=h product.image_url %></td>
-    <td><%= link_to 'Show', product %></td>
-    <td><%= link_to 'Edit', edit_product_path(product) %></td>
-    <td><%= link_to 'Destroy', product, :confirm => 'Are you sure?', :method => :delete %></td>
+    <!-- START_HIGHLIGHT -->
+    <td><%=h product.price %></td>
+    <!-- END_HIGHLIGHT -->
+    <td><%= link_to '表示', product %></td>
+    <td><%= link_to '編集', edit_product_path(product) %></td>
+    <td><%= link_to '破棄', product, :confirm => '本当に破棄してよいですか？',
+                                     :method => :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New product', new_product_path %>
+<%= link_to '新しい商品', new_product_path %>

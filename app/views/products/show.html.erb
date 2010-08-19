@@ -1,18 +1,24 @@
 <p>
-  <b>Title:</b>
+  <b>名称:</b>
   <%=h @product.title %>
 </p>
 
 <p>
-  <b>Description:</b>
+  <b>説明:</b>
   <%=h @product.description %>
 </p>
 
 <p>
-  <b>Image url:</b>
+  <b>画像URL:</b>
   <%=h @product.image_url %>
 </p>
 
+<!-- START_HIGHLIGHT -->
+<p>
+  <b>価格:</b>
+  <%=h @product.price %>
+</p>
+<!-- END_HIGHLIGHT -->
 
-<%= link_to 'Edit', edit_product_path(@product) %> |
-<%= link_to 'Back', products_path %>
+<%= link_to '編集', edit_product_path(@product) %> |
+<%= link_to '戻る', products_path %>
