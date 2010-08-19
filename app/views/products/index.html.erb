@@ -1,30 +1,33 @@
-<h1>製品一覧</h1>
+<div id="product-list">
+  <h1>商品一覧</h1>
 
-<table>
-  <tr>
-    <th>名称</th>
-    <th>説明</th>
-    <th>画像URL</th>
-    <!-- START_HIGHLIGHT -->
-    <th>価格</th>
-    <!-- END_HIGHLIGHT -->
-  </tr>
+  <table>
+  <% for product in @products %>
+    <tr class="<%= cycle('list-line-odd', 'list-line-even') %>">
 
-<% for product in @products %>
-  <tr>
-    <td><%=h product.title %></td>
-    <td><%=h product.description %></td>
-    <td><%=h product.image_url %></td>
-    <!-- START_HIGHLIGHT -->
-    <td><%=h product.price %></td>
-    <!-- END_HIGHLIGHT -->
-    <td><%= link_to '表示', product %></td>
-    <td><%= link_to '編集', edit_product_path(product) %></td>
-    <td><%= link_to '破棄', product, :confirm => '本当に破棄してよいですか？',
-                                     :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
+      <td>
+        <%= image_tag product.image_url, :class => 'list-image' %>
+      </td>
+
+      <td class="list-description">
+        <dl>
+          <dt><%=h product.title %></dt>
+          <dd><%=h truncate(product.description.gsub(/<.*?>/,''),
+                 :length => 80) %></dd>
+        </dl>
+      </td>
+
+      <td class="list-actions">
+        <%= link_to '表示', product %><br/>
+        <%= link_to '編集', edit_product_path(product) %><br/>
+        <%= link_to '破棄', product,
+                    :confirm => '本当に破棄してよいですか？',
+                    :method => :delete %>
+      </td>
+    </tr>
+  <% end %>
+  </table>
+</div>
 
 <br />
 
