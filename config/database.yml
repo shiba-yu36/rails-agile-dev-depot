@@ -20,9 +20,9 @@ development:
   reconnect: false
   database: depot_development
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: nobody
+  password: nobody
+  socket: /opt/local/var/run/mysql5/mysqld.sock
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -33,9 +33,9 @@ test:
   reconnect: false
   database: depot_test
   pool: 5
-  username: root
-  password:
-  socket: /var/run/mysqld/mysqld.sock
+  username: nobody
+  password: nobody
+  socket: /opt/local/var/run/mysql5/mysqld.sock
 
 production:
   adapter: mysql
@@ -44,5 +44,5 @@ production:
   database: depot_production
   pool: 5
   username: root
-  password: 
+  password:
   socket: /var/run/mysqld/mysqld.sock
