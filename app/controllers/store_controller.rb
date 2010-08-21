@@ -22,6 +22,27 @@ class StoreController < ApplicationController
     redirect_to_index
   end
 
+  def checkout
+    @cart = find_cart
+    if @cart.items.empty?
+      redirect_to_index("カートは現在空です")
+    else
+      @order = Order.new
+    end
+  end
+
+  def save_order
+    @cart = find_cart
+    @order = Order.new(params[:order])
+    @order.add_line_items_from_cart(@cart)
+    if @order.save
+      session[:cart] = nil
+      redirect_to_index("ご注文ありがとうございます")
+    else
+      render :action => 'checkout'
+    end
+  end
+
 private
 
   def redirect_to_index(msg = nil)
