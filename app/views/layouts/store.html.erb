@@ -3,9 +3,8 @@
 <html>
 <head>
   <title>Pragprog Booksオンラインストア</title>
-<!-- START:stylesheet -->
   <%= stylesheet_link_tag "depot", :media => "all" %><!-- <label id="code.slt"/> -->
-<!-- END:stylesheet -->
+  <%= javascript_include_tag :defaults %>
 </head>
 <body id="store">
   <div id="banner">
@@ -14,12 +13,20 @@
   </div>
   <div id="columns">
     <div id="side">
+
+      <% hidden_div_if(@cart.items.empty?, :id => "cart") do %>
+        <%= render(:partial => "cart", :object => @cart) %>
+      <% end %>
+
       <a href="http://www....">ホーム</a><br />
       <a href="http://www..../faq">よくある質問</a><br />
       <a href="http://www..../news">ニュース</a><br />
       <a href="http://www..../contact">お問い合わせ</a><br />
     </div>
     <div id="main">
+      <% if flash[:notice] -%>
+        <div id="notice"><%= flash[:notice] %></div>
+      <% end -%>
       <%= yield :layout %><!-- <label id="code.depot.e.include"/> -->
     </div>
   </div>
