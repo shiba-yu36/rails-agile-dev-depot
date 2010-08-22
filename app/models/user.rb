@@ -32,6 +32,12 @@ class User < ActiveRecord::Base
     self.hashed_password = User.encrypted_password(self.password, self.salt)
   end
 
+  def after_destroy
+    if User.count.zero?
+      raise "最後のユーザは削除できません"
+    end
+  end
+
 
 private
 
